@@ -6,12 +6,15 @@ var exitValue;
 function main() {
 rateAttempts = 0;
 prompt();
-if(exitValue = true){
+if(exitValue == true){
+
     calculate();
-} else {
+} if (exitValue == false){
+
     main();
+    }
 }
-}
+
 init();
 main();
 function init() {
@@ -22,18 +25,28 @@ function init() {
 function prompt() {
     rating = PROMPT.question("Please enter a rating for " + movieTitle);
     rateAttempts++;
-    if(isFinite(rating)){
+    rating = Math.floor(rating);
+
+    if(!isFinite(rating)){
         if(rateAttempts != 3) {
             prompt();
         } else {
             exitValue = true;
         }
-    } else {
+    }
+    if(rating <= 5 && rating >= 0){
         totalUses++;
         ratingSum = ratingSum+rating;
+        exitValue = false;
+    } else {
+        if(rateAttempts != 3) {
+            prompt();
+        } else {
+            exitValue = true;
+        }
     }
 }
 function calculate() {
-    average = ratingSum / rateAttempts;
+    average = ratingSum / totalUses;
     console.log("The average rating for this movie was " + average);
 }
