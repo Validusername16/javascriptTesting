@@ -53,6 +53,9 @@ function prompt() {
 function calculate() {
     average = ratingSum / totalUses;
     average = average.toFixed(2);
-       console.log("The average rating for " + movieTitle + " was " + average + ".");
-
+    if(!isNaN(average)) {
+        console.log("The average rating for " + movieTitle + " was " + average + ".");
+    }  else {
+        console.log("Nobody rated " + movieTitle + ".");
+    }
 }
