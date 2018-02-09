@@ -1,7 +1,7 @@
 "use strict";
 const PROMPT = require('readline-sync');
-var bedroomCount, bathroomCount, garageSize, lotNumber;
-var basePrice, bedroomCost, bathroomCost, garageSizeCost, total;
+let bedroomCount, bathroomCount, garageSize, lotNumber;
+let basePrice, bedroomCost, bathroomCost, garageSizeCost, total;
 function main() {
     setLotNumber();
     setBedrooms();

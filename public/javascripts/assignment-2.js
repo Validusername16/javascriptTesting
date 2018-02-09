@@ -1,7 +1,7 @@
 "use scrict";
 const PROMPT = require('readline-sync');
-var firstName,lastName; //Strings
-var basePrice,policyNumber,Age,accidentFaults,premiumTotal,birthDay,birthMonth,birthYear,currentDay,currentMonth,currentYear; //Integers
+let firstName,lastName; //Strings
+let basePrice,policyNumber,Age,accidentFaults,premiumTotal,birthDay,birthMonth,birthYear,currentDay,currentMonth,currentYear; //Integers
 function main() {
     basePrice = 100;
     setName();

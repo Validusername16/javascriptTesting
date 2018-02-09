@@ -1,8 +1,9 @@
 "use strict";
 const PROMPT = require('readline-sync');
-var totalUses, ratingSum, rateAttempts, rating, average;
-var movieTitle;
-var exitValue;
+let totalUses, ratingSum, rateAttempts, rating, average;
+let movieTitle;
+let exitValue;
+
 function main() {
 rateAttempts = 0;
 prompt();
