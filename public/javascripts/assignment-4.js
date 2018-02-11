@@ -1,5 +1,5 @@
 "use strict";
-const PROMPT = require('readline-sync');
+const {question: prompt} = require('readline-sync');
 let movies = [];
 
 function main() {
@@ -9,7 +9,7 @@ function main() {
 function init() {
     for (let i = 0; i < 5; i++) { // iterates over 0 through 4
         movies[i] = {
-            title: PROMPT.question(`Please enter the title for movie ${i + 1}`),
+            title: prompt(`Please enter the title for movie ${i + 1}`),
             reviews: [],
             ratings: []
         }
@@ -19,9 +19,10 @@ function init() {
 init();
 main();
 
+// TODO: implement averageRatings
 const actions = [reviewWriting, viewReviews, averageRatings];
 function mainPrompt() {
-    const input = parseInt(PROMPT.question(`Please enter a selection.
+    const input = parseInt(prompt(`Please enter a selection.
 1 - Write a review
 2 - View reviews for a movie
 3 - View rating of movies (highest to lowest)
@@ -45,11 +46,11 @@ function generateMoviePrompt() {
 }
 
 function reviewWriting() {
-    const movieIndex = parseInt(PROMPT.question(generateMoviePrompt())) - 1;
+    const movieIndex = parseInt(prompt(generateMoviePrompt())) - 1;
     const movie = movies[movieIndex];
 
     if (movie) {
-        const rating = parseInt(PROMPT.question(`Please enter a rating for ${movie.title}. `));
+        const rating = parseInt(prompt(`Please enter a rating for ${movie.title}. `));
         // if this was (rating < 0 || rating > 5) it would not consider NaN or infinity invalid
         if (!(rating >= 0 && rating <= 5)) {
             console.log("I'm sorry, that is an invalid rating, please reselect your movie and try again.");
@@ -57,7 +58,7 @@ function reviewWriting() {
         }
         const {reviews, ratings} = movie; // object unpacking
         ratings.push(rating);
-        reviews.push(PROMPT.question("Please type in your review. "));
+        reviews.push(prompt("Please type in your review. "));
         return mainPrompt();
     } else {
         console.log("I'm sorry, that is an invalid response, please try again.");
@@ -66,7 +67,7 @@ function reviewWriting() {
 }
 
 function viewReviews() {
-    const movieIndex = parseInt(PROMPT.question(generateMoviePrompt())) - 1;
+    const movieIndex = parseInt(prompt(generateMoviePrompt())) - 1;
     const movie = movies[movieIndex];
 
     if (movie) {

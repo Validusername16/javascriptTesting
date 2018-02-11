@@ -1,8 +1,9 @@
 "use strict";
-const PROMPT = require('readline-sync');
-let totalUses = 0, ratingSum = 0, rateAttempts = 0, rating;
+const {question: prompt} = require('readline-sync');
+let totalUses, ratingSum, rateAttempts;
+totalUses = ratingSum = rateAttempts = 0;
 let movieTitle;
-let exitValue;
+let exitValue = false;
 
 function main() {
     prompt();
@@ -19,15 +20,16 @@ main();
 
 function init() {
     process.stdout.write('\x1Bc');
-    movieTitle = PROMPT.question("Please enter the movie's name. ");
+    movieTitle = prompt("Please enter the movie's name. ");
     process.stdout.write('\x1Bc');
 }
 
 function prompt() {
-    rating = Math.floor(PROMPT.question(`Please enter a rating for ${movieTitle}. `));
+    const rating = Math.floor(parseInt(prompt(`Please enter a rating for ${movieTitle}. `)));
     rateAttempts++;
 
     if (!isFinite(rating)) {
+        // better practice if you do < 3 instead of != 3
         if (rateAttempts < 3) {
             prompt();
         } else {

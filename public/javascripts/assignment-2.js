@@ -1,5 +1,5 @@
 "use strict";
-const PROMPT = require('readline-sync');
+const {question: prompt} = require('readline-sync');
 const basePrice = 100;
 const currentDate = new Date();
 const currentYear = currentDate.getFullYear();
@@ -23,18 +23,18 @@ process.stdout.write('\x1Bc');
 main();
 
 function setName() {
-    firstName = PROMPT.question("Please enter your first name. ");
-    lastName = PROMPT.question("Please enter your last name. ");
+    firstName = prompt("Please enter your first name. ");
+    lastName = prompt("Please enter your last name. ");
 }
 
 function setPolicyNumber() {
-    policyNumber = PROMPT.question("Please enter your policy number. ");
+    policyNumber = prompt("Please enter your policy number. ");
 }
 
 function setBirthDate() {
-    birthMonth = parseInt(PROMPT.question("Please enter the month of your birthdate. "));
-    birthDay = parseInt(PROMPT.question("Please enter the day of your birthdate. "));
-    birthYear = parseInt(PROMPT.question("Please enter the year of your birthdate. "));
+    birthMonth = parseInt(prompt("Please enter the month of your birthdate. "));
+    birthDay = parseInt(prompt("Please enter the day of your birthdate. "));
+    birthYear = parseInt(prompt("Please enter the year of your birthdate. "));
     if (birthMonth < 0 || birthMonth > 12
         || birthDay < 0 || birthDay > 31
         || birthYear > currentYear
@@ -45,7 +45,7 @@ function setBirthDate() {
 }
 
 function setFaults() {
-    accidentFaults = PROMPT.question(`Please enter how many accident faults you've had since ${currentMonth}/${currentDay}/${currentYear - 3}. `);
+    accidentFaults = prompt(`Please enter how many accident faults you've had since ${currentMonth}/${currentDay}/${currentYear - 3}. `);
 }
 
 function calculate() {

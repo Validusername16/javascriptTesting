@@ -1,5 +1,5 @@
 "use strict";
-const PROMPT = require('readline-sync');
+const {question: prompt} = require('readline-sync');
 const basePrice = 50000, bedroomCost = 17000, bathroomCost = 12500, garageSizeCost = 6000;
 let bedroomCount, bathroomCount, garageSize, lotNumber;
 
@@ -15,19 +15,19 @@ function main() {
 main();
 
 function setLotNumber() {
-    lotNumber = PROMPT.question("Please enter a lot number: ");
+    lotNumber = prompt("Please enter a lot number: ");
 }
 
 function setBedrooms() {
-    bedroomCount = PROMPT.question("How many bedrooms? ");
+    bedroomCount = prompt("How many bedrooms? ");
 }
 
 function setBathrooms() {
-    bathroomCount = PROMPT.question("How many bathrooms? ");
+    bathroomCount = prompt("How many bathrooms? ");
 }
 
 function setGarageSize() {
-    garageSize = PROMPT.question("How many cars do you plan to fit in your garage? ");
+    garageSize = prompt("How many cars do you plan to fit in your garage? ");
 }
 
 function calculatePrice() {
