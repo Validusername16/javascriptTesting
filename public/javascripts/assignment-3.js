@@ -1,59 +1,62 @@
 "use strict";
-const {question: prompt} = require('readline-sync');
-let totalUses, ratingSum, rateAttempts;
-totalUses = ratingSum = rateAttempts = 0;
+const PROMPT = require('readline-sync');
+let totalUses, ratingSum, rateAttempts, rating, average;
 let movieTitle;
-let exitValue = false;
+let exitValue;
 
 function main() {
-    prompt();
+rateAttempts = 0;
+prompt();
+if(exitValue == true){
     process.stdout.write('\x1Bc');
-    if (exitValue) {
-        calculate();
-    } else {
-        main();
+    calculate();
+} if (exitValue == false){
+    process.stdout.write('\x1Bc');
+    main();
     }
 }
 
 init();
 main();
-
 function init() {
+    rateAttempts = 0;
+    totalUses = 0;
+    ratingSum = 0;
     process.stdout.write('\x1Bc');
-    movieTitle = prompt("Please enter the movie's name. ");
+    movieTitle = PROMPT.question("Please enter the movie's name. ");
     process.stdout.write('\x1Bc');
 }
-
 function prompt() {
-    const rating = Math.floor(parseInt(prompt(`Please enter a rating for ${movieTitle}. `)));
+    rating = PROMPT.question("Please enter a rating for " + movieTitle + ". ");
     rateAttempts++;
+    rating = Math.floor(rating);
 
-    if (!isFinite(rating)) {
-        // better practice if you do < 3 instead of != 3
-        if (rateAttempts < 3) {
+    if(!isFinite(rating)){
+        if(rateAttempts != 3) {
             prompt();
         } else {
             exitValue = true;
         }
     }
-
-    if (rating <= 5 && rating >= 0){
+    if(rating <= 5 && rating >= 0){
         totalUses++;
-        ratingSum += rating;
+        ratingSum = ratingSum+rating;
         exitValue = false;
-    } else if (rateAttempts < 3) {
-        prompt();
     } else {
-        exitValue = true;
+        if(rateAttempts != 3) {
+            prompt();
+        } else {
+
+            exitValue = true;
+        }
     }
 }
-
 function calculate() {
-    const average = (ratingSum / totalUses).toFixed(2);
-
-    if (!isNaN(average)) {
-        console.log(`The average rating for ${movieTitle} was ${average}.`);
-    } else {
-        console.log(`Nobody rated ${movieTitle}.`);
+    average = ratingSum / totalUses;
+    average = average.toFixed(2);
+    if(!isNaN(average)) {
+        console.log("The average rating for " + movieTitle + " was " + average + ".");
+    }  else {
+        console.log("Nobody rated " + movieTitle + ".");
     }
 }
